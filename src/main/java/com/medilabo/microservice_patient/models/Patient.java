@@ -29,4 +29,13 @@ public class Patient {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
+
+    public Patient(String firstName, String lastName, LocalDate dob, String phone, Gender gender, Address address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dob = dob;
+        this.phone = phone;
+        this.gender = gender;
+        this.address = address;
+    }
 }
