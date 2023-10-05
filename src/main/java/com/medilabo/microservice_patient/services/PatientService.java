@@ -39,6 +39,7 @@ public class PatientService {
         Optional <Patient> optionalPatient = patientRepository.findById(id);
         if (optionalPatient.isPresent()) {
             patientRepository.deleteById(id);
+            return;
         }
         throw new PatientDoesNotExistException("Patient does not exist for id: " + id);
     }

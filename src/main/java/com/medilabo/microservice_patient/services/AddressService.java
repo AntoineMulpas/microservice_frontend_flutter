@@ -39,6 +39,7 @@ public class AddressService {
         Optional <Address> optionalAddress = addressRepository.findById(id);
         if (optionalAddress.isPresent()) {
             addressRepository.deleteById(id);
+            return;
         }
         throw new AddressDoesNotExistsException("Patient does not exist for id: " + id);
     }
