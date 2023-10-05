@@ -22,20 +22,20 @@ public class PatientService {
         this.patientRepository = patientRepository;
     }
 
-    public Patient add(Patient patient) {
+    public Patient addNewPatient(Patient patient) {
         return patientRepository.save(patient);
     }
 
-    public Patient findById(Long id) throws PatientDoesNotExistException {
+    public Patient findPatientById(Long id) throws PatientDoesNotExistException {
         return patientExistById(id);
     }
 
-    public Patient updateById(Long id, Patient patient) throws PatientDoesNotExistException {
+    public Patient updatePatientById(Long id, Patient patient) throws PatientDoesNotExistException {
         Patient patientExistById = patientExistById(id);
         return patientRepository.save(PatientMapper.map(patientExistById, patient));
     }
 
-    public void deleteById(Long id) throws PatientDoesNotExistException {
+    public void deletePatientById(Long id) throws PatientDoesNotExistException {
         Optional <Patient> optionalPatient = patientRepository.findById(id);
         if (optionalPatient.isPresent()) {
             patientRepository.deleteById(id);
@@ -43,7 +43,7 @@ public class PatientService {
         throw new PatientDoesNotExistException("Patient does not exist for id: " + id);
     }
 
-    public List <Patient> findAll() {
+    public List <Patient> findAllPatients() {
         return patientRepository.findAll();
     }
 

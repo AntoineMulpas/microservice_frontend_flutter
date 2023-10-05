@@ -20,10 +20,10 @@ public class PatientController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Patient> add(
+    public ResponseEntity<Patient> addNewPatient(
             @RequestBody Patient patient) {
         try {
-            Patient added = patientService.add(patient);
+            Patient added = patientService.addNewPatient(patient);
             return ResponseEntity.ok().body(added);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
@@ -31,9 +31,9 @@ public class PatientController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Patient> findById(Long id) {
+    public ResponseEntity<Patient> findPatientById(Long id) {
         try {
-            Patient patient = patientService.findById(id);
+            Patient patient = patientService.findPatientById(id);
             return ResponseEntity.ok().body(patient);
         } catch (PatientDoesNotExistException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
@@ -41,11 +41,11 @@ public class PatientController {
     }
 
     @GetMapping("/delete/{id}")
-    public ResponseEntity<String> deleteById(
+    public ResponseEntity<String> deletePatientById(
             @PathVariable Long id
     ) {
         try {
-            patientService.deleteById(id);
+            patientService.deletePatientById(id);
             return ResponseEntity.ok().body("Patient deleted with success.");
         } catch (PatientDoesNotExistException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
@@ -54,11 +54,11 @@ public class PatientController {
 
 
     @PostMapping("/update/{id}")
-    public ResponseEntity<Patient> updateById(
+    public ResponseEntity<Patient> updatePatientById(
             @PathVariable Long id,
             @RequestBody Patient patient) {
         try {
-            Patient updateById = patientService.updateById(id, patient);
+            Patient updateById = patientService.updatePatientById(id, patient);
             return ResponseEntity.ok().body(updateById);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
