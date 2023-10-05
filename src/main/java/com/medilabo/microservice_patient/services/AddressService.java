@@ -22,20 +22,20 @@ public class AddressService {
         this.addressRepository = addressRepository;
     }
 
-    public Address add(Address address) {
+    public Address addNewAddress(Address address) {
         return addressRepository.save(address);
     }
 
-    public Address findById(Long id) throws AddressDoesNotExistsException {
+    public Address findAddressById(Long id) throws AddressDoesNotExistsException {
         return addressExistById(id);
     }
 
-    public Address updateById(Long id, Address address) throws AddressDoesNotExistsException {
+    public Address updateAddressById(Long id, Address address) throws AddressDoesNotExistsException {
         Address addressExistById = addressExistById(id);
         return addressRepository.save(AddressMapper.map(addressExistById, address));
     }
 
-    public void deleteById(Long id) throws AddressDoesNotExistsException {
+    public void deleteAddressById(Long id) throws AddressDoesNotExistsException {
         Optional <Address> optionalAddress = addressRepository.findById(id);
         if (optionalAddress.isPresent()) {
             addressRepository.deleteById(id);
@@ -43,7 +43,7 @@ public class AddressService {
         throw new AddressDoesNotExistsException("Patient does not exist for id: " + id);
     }
 
-    public List <Address> findAll() {
+    public List <Address> findAllAddresses() {
         return addressRepository.findAll();
     }
 
