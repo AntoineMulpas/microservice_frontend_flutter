@@ -2,7 +2,6 @@ package com.medilabo.microservice_patient.controllers;
 
 import com.medilabo.microservice_patient.exceptions.AddressDoesNotExistsException;
 import com.medilabo.microservice_patient.models.Address;
-import com.medilabo.microservice_patient.models.Patient;
 import com.medilabo.microservice_patient.services.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

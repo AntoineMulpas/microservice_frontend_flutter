@@ -1,5 +1,7 @@
 package com.medilabo.microservice_patient.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,6 +14,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @ToString
+@Builder
 public class Patient {
 
     @Id
@@ -20,6 +23,8 @@ public class Patient {
     private Long id;
     private String firstName;
     private String lastName;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate dob;
     private String phone;
 
