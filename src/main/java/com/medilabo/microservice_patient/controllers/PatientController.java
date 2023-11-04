@@ -21,7 +21,7 @@ public class PatientController {
         this.patientService = patientService;
     }
 
-    @PostMapping("/add")
+    @PostMapping(value = "/add", consumes = "application/JSON")
     public ResponseEntity<Patient> addNewPatient(
             @RequestBody Patient patient) {
         try {
@@ -61,7 +61,7 @@ public class PatientController {
     }
 
 
-    @PostMapping("/update/{id}")
+    @PostMapping(value = "/update/{id}" , consumes = "application/JSON")
     public ResponseEntity<Patient> updatePatientById(
             @PathVariable Long id,
             @RequestBody Patient patient) {
