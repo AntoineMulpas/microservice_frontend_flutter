@@ -39,7 +39,7 @@ public class PatientController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Patient> findPatientById(Long id) {
+    public ResponseEntity<Patient> findPatientById(@PathVariable Long id) {
         try {
             Patient patient = patientService.findPatientById(id);
             return ResponseEntity.ok().body(patient);
