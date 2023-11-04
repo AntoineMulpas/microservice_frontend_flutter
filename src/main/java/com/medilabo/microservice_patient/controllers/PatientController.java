@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/patient")
 public class PatientController {
@@ -28,6 +30,12 @@ public class PatientController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Patient>> findAllPatient() {
+        List <Patient> allPatients = patientService.findAllPatients();
+        return ResponseEntity.ok().body(allPatients);
     }
 
     @GetMapping("/{id}")
