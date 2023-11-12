@@ -1,5 +1,6 @@
 package com.medilabo.microservice_patient.services;
 
+import com.medilabo.microservice_patient.exceptions.PatientAlreadyExistsException;
 import com.medilabo.microservice_patient.exceptions.PatientDoesNotExistException;
 import com.medilabo.microservice_patient.models.Patient;
 import com.medilabo.microservice_patient.repositories.PatientRepository;
@@ -22,7 +23,18 @@ public class PatientService {
         this.patientRepository = patientRepository;
     }
 
-    public Patient addNewPatient(Patient patient) {
+    public Patient addNewPatient(Patient patient) throws PatientAlreadyExistsException {
+        Optional <Patient> optionalPatient = patientRepository.findPatientByFirstNameEqualsIgnoreCaseAndLastNameEqualsIgnoreCaseAndDobEqualsAndAddress_City(
+                patient.getFirstName(),
+                patient.getLastName(),
+                patient.getDob(),
+                patient.getAddress().getCity()
+        );
+
+        if (optionalPatient.isPresent()) {
+            throw new PatientAlreadyExistsException("Patient already exists.");
+        }
+
         return patientRepository.save(patient);
     }
 

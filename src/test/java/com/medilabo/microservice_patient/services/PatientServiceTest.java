@@ -1,5 +1,6 @@
 package com.medilabo.microservice_patient.services;
 
+import com.medilabo.microservice_patient.exceptions.PatientAlreadyExistsException;
 import com.medilabo.microservice_patient.exceptions.PatientDoesNotExistException;
 import com.medilabo.microservice_patient.models.Address;
 import com.medilabo.microservice_patient.models.Gender;
@@ -48,7 +49,7 @@ class PatientServiceTest {
     }
 
     @Test
-    void addNewPatient() {
+    void addNewPatient() throws PatientAlreadyExistsException {
         when(patientRepository.save(any())).thenReturn(patient);
         assertEquals(patient.getFirstName(), underTest.addNewPatient(patient).getFirstName());
         assertEquals(patient.getLastName(), underTest.addNewPatient(patient).getLastName());

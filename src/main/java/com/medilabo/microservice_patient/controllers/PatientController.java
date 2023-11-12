@@ -1,5 +1,6 @@
 package com.medilabo.microservice_patient.controllers;
 
+import com.medilabo.microservice_patient.exceptions.PatientAlreadyExistsException;
 import com.medilabo.microservice_patient.exceptions.PatientDoesNotExistException;
 import com.medilabo.microservice_patient.models.Patient;
 import com.medilabo.microservice_patient.services.PatientService;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/patient")
+@CrossOrigin(origins = "*")
 public class PatientController {
 
     private final PatientService patientService;
@@ -27,8 +29,8 @@ public class PatientController {
         try {
             Patient added = patientService.addNewPatient(patient);
             return ResponseEntity.ok().body(added);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        } catch (PatientAlreadyExistsException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
         }
     }
 
