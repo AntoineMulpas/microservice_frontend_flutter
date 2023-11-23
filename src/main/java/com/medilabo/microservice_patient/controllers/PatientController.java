@@ -36,6 +36,7 @@ public class PatientController {
 
     @GetMapping("/all")
     public ResponseEntity<List<Patient>> findAllPatient() {
+        System.out.println("Called findAllPatient");
         List <Patient> allPatients = patientService.findAllPatients();
         return ResponseEntity.ok().body(allPatients);
     }
