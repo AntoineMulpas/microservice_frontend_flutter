@@ -38,6 +38,7 @@ public class PatientController {
     public ResponseEntity<List<Patient>> findAllPatient() {
         System.out.println("Called findAllPatient");
         List <Patient> allPatients = patientService.findAllPatients();
+        allPatients.forEach(System.out::println);
         return ResponseEntity.ok().body(allPatients);
     }
 
