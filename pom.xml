@@ -99,6 +99,7 @@
     </dependencyManagement>
 
     <build>
+        <finalName>microservice-patient</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
